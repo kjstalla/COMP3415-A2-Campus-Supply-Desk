@@ -1,0 +1,63 @@
+test_cancel_order_restores_stock (test_smoke.OrderSmokeTests.test_cancel_order_restores_stock) ... ok
+test_cancelling_cancelled_order_preserves_stock (test_smoke.OrderSmokeTests.test_cancelling_cancelled_order_preserves_stock) ... FAIL
+test_order_can_be_reopened (test_smoke.OrderSmokeTests.test_order_can_be_reopened) ... ok
+test_place_order_and_verify_stock (test_smoke.OrderSmokeTests.test_place_order_and_verify_stock) ... ok
+test_regular_pickup_quote (test_smoke.OrderSmokeTests.test_regular_pickup_quote) ... ok
+test_stock_is_less_than_ordered (test_smoke.OrderSmokeTests.test_stock_is_less_than_ordered) ... ok
+test_stock_is_preserved_on_quote (test_smoke.OrderSmokeTests.test_stock_is_preserved_on_quote) ... ok
+test_student_delivery_quote (test_smoke.OrderSmokeTests.test_student_delivery_quote) ... ok
+test_student_discount_baseline (test_smoke.OrderSmokeTests.test_student_discount_baseline) ... FAIL
+test_user_orders_nothing (test_smoke.OrderSmokeTests.test_user_orders_nothing) ... ok
+
+======================================================================
+FAIL: test_cancelling_cancelled_order_preserves_stock (test_smoke.OrderSmokeTests.test_cancelling_cancelled_order_preserves_stock)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\kriss\OneDrive\Desktop\assignment2-comp3415\COMP3415-A2-Campus-Supply-Desk\tests\test_smoke.py", line 101, in test_cancelling_cancelled_order_preserves_stock
+    self.assertEqual(after, before)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+AssertionError: Lists differ: [{'pr[159 chars]k': 12}, {'product_id': 'hoodie', 'name': 'Cam[212 chars]: 4}] != [{'pr[159 chars]k': 10}, {'product_id': 'hoodie', 'name': 'Cam[212 chars]: 4}]
+
+First differing element 1:
+{'pro[16 chars]ack', 'name': 'Pen pack', 'unit_price_cents': 750, 'stock': 12}
+{'pro[16 chars]ack', 'name': 'Pen pack', 'unit_price_cents': 750, 'stock': 10}
+
+  [{'name': 'Notebook',
+    'product_id': 'notebook',
+    'stock': 20,
+    'unit_price_cents': 500},
+   {'name': 'Pen pack',
+    'product_id': 'pen-pack',
+-   'stock': 12,
+?             ^
+
++   'stock': 10,
+?             ^
+
+    'unit_price_cents': 750},
+   {'name': 'Campus hoodie',
+    'product_id': 'hoodie',
+    'stock': 5,
+    'unit_price_cents': 4000},
+   {'name': 'Campus mug',
+    'product_id': 'mug',
+    'stock': 8,
+    'unit_price_cents': 1500},
+   {'name': 'Canvas bag',
+    'product_id': 'bag',
+    'stock': 4,
+    'unit_price_cents': 2500}]
+
+======================================================================
+FAIL: test_student_discount_baseline (test_smoke.OrderSmokeTests.test_student_discount_baseline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "C:\Users\kriss\OneDrive\Desktop\assignment2-comp3415\COMP3415-A2-Campus-Supply-Desk\tests\test_smoke.py", line 65, in test_student_discount_baseline
+    self.assertEqual(quote["discount_cents"], 500)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 0 != 500
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.018s
+
+FAILED (failures=2)
