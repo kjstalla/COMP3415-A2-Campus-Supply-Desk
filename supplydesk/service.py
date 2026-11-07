@@ -2,6 +2,12 @@
 
 from supplydesk.storage import JsonStore
 
+STUDENT_DISCOUNT_THRESHOLD_IN_CENTS = 5000
+STUDENT_DISCOUNT_AS_PERCENT = 10
+ROUNDING_OFFSET_FOR_DISCOUNT = 50
+FREE_DELIVERY_THRESHOLD_IN_CENTS = 10000
+STANDARD_DELIVERY_FEE_IN_CENTS = 600
+
 
 class OrderService:
     def __init__(self, state_path=".supplydesk/state.json"):
@@ -45,11 +51,11 @@ class OrderService:
                 "line_total_cents": line_total,
             })
         discount = 0
-        if customer_type == "student" and subtotal > 5000:
-            discount = (subtotal * 10 + 50) // 100
+        if customer_type == "student" and subtotal > STUDENT_DISCOUNT_THRESHOLD_IN_CENTS:
+            discount = (subtotal * STUDENT_DISCOUNT_AS_PERCENT + ROUNDING_OFFSET_FOR_DISCOUNT) // 100
         delivery = 0
-        if fulfillment == "delivery" and subtotal - discount < 10000:
-            delivery = 600
+        if fulfillment == "delivery" and subtotal - discount < FREE_DELIVERY_THRESHOLD_IN_CENTS:
+            delivery = STANDARD_DELIVERY_FEE_IN_CENTS
         return {
             "customer_type": customer_type,
             "fulfillment": fulfillment,
@@ -95,11 +101,11 @@ class OrderService:
                 "line_total_cents": line_total,
             })
         discount = 0
-        if customer_type == "student" and subtotal > 5000:
-            discount = (subtotal * 10 + 50) // 100
+        if customer_type == "student" and subtotal > STUDENT_DISCOUNT_THRESHOLD_IN_CENTS:
+            discount = (subtotal * STUDENT_DISCOUNT_AS_PERCENT + ROUNDING_OFFSET_FOR_DISCOUNT) // 100
         delivery = 0
-        if fulfillment == "delivery" and subtotal - discount < 10000:
-            delivery = 600
+        if fulfillment == "delivery" and subtotal - discount < FREE_DELIVERY_THRESHOLD_IN_CENTS:
+            delivery = STANDARD_DELIVERY_FEE_IN_CENTS
         order = {
             "order_id": "ORD-" + str(state["next_order_number"]).zfill(4),
             "status": "placed",
