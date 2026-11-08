@@ -52,7 +52,7 @@ class OrderService:
                 "line_total_cents": line_total,
             })
         discount = 0
-        if customer_type == "student" and subtotal > STUDENT_DISCOUNT_THRESHOLD_IN_CENTS:
+        if customer_type == "student" and subtotal >= STUDENT_DISCOUNT_THRESHOLD_IN_CENTS:
             discount = (subtotal * STUDENT_DISCOUNT_AS_PERCENT + ROUNDING_OFFSET_FOR_DISCOUNT) // 100
         delivery = 0
         if fulfillment == "express":
@@ -109,6 +109,8 @@ class OrderService:
                 break
         if order is None:
             raise ValueError("Unknown order: " + order_id)
+        if order["status"] == "cancelled":
+            return order
         for line in order["items"]:
             for product in state["catalog"]:
                 if product["product_id"] == line["product_id"]:

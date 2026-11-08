@@ -155,5 +155,12 @@ class OrderSmokeTests(unittest.TestCase):
         self.assertEqual(cancelled["delivery_cents"], order["delivery_cents"])
         self.assertEqual(cancelled["discount_cents"], order["discount_cents"])
         self.assertEqual(cancelled["total_cents"], order["total_cents"])
+
+    def test_verify_student_does_not_get_discount_below_threshold(self):
+        quote = self.service.quote("student", [{"product_id": "pen-pack", "quantity": 1}, {"product_id": "hoodie", "quantity": 1}])
+        self.assertEqual(quote["subtotal_cents"], 4750)
+        self.assertEqual(quote["discount_cents"], 0)
+        self.assertEqual(quote["delivery_cents"], 0)
+        self.assertEqual(quote["total_cents"], 4750)
 if __name__ == "__main__":
     unittest.main()
