@@ -1,0 +1,22 @@
+test_cancel_order_restores_stock (test_smoke.OrderSmokeTests.test_cancel_order_restores_stock) ... ok
+test_cancelling_cancelled_order_preserves_stock (test_smoke.OrderSmokeTests.test_cancelling_cancelled_order_preserves_stock) ... ok
+test_express_fee_not_waived (test_smoke.OrderSmokeTests.test_express_fee_not_waived) ... ok
+test_express_order_cancellation (test_smoke.OrderSmokeTests.test_express_order_cancellation) ... ok
+test_express_orders_persist (test_smoke.OrderSmokeTests.test_express_orders_persist) ... ok
+test_order_can_be_reopened (test_smoke.OrderSmokeTests.test_order_can_be_reopened) ... ok
+test_place_order_and_verify_stock (test_smoke.OrderSmokeTests.test_place_order_and_verify_stock) ... ok
+test_regular_pickup_quote (test_smoke.OrderSmokeTests.test_regular_pickup_quote) ... ok
+test_showing_express_delivery_quote (test_smoke.OrderSmokeTests.test_showing_express_delivery_quote) ... ok
+test_stock_is_less_than_ordered (test_smoke.OrderSmokeTests.test_stock_is_less_than_ordered) ... ok
+test_stock_is_preserved_on_quote (test_smoke.OrderSmokeTests.test_stock_is_preserved_on_quote) ... ok
+test_student_delivery_quote (test_smoke.OrderSmokeTests.test_student_delivery_quote) ... ok
+test_student_discount_baseline (test_smoke.OrderSmokeTests.test_student_discount_baseline) ... ok
+test_user_orders_nothing (test_smoke.OrderSmokeTests.test_user_orders_nothing) ... ok
+test_verify_student_discount_with_express (test_smoke.OrderSmokeTests.test_verify_student_discount_with_express) ... ok
+test_verify_student_does_not_get_discount_below_threshold (test_smoke.OrderSmokeTests.test_verify_student_does_not_get_discount_below_threshold) ... ok
+test_wrong_fulfillment_causes_error (test_smoke.OrderSmokeTests.test_wrong_fulfillment_causes_error) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.021s
+
+OK
