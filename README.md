@@ -81,11 +81,21 @@ Then:
 3. Enter `notebook` for the product ID.
 4. Enter `2` for the quantity.
 5. Press Enter without typing another product ID to finish adding items.
-6. Press Enter at the fulfillment prompt to use `pickup`.
+6. Press Enter at the fulfillment prompt to use pickup by default, or enter pickup, delivery, or express to select a fulfillment option.
 
 With sufficient stock available, the quote should show a **$10.00 total**.
 
 No order has been placed. To purchase items, choose **3 — Place an order** from the menu and follow the prompts.
+
+### Fulfillment Options
+
+Choose from three fulfillment options: pickup, normal delivery, and express delivery. Pickup is the default option.
+
+Pickup: no fee
+Normal Delivery: $6 delivery fee, although it is waived when the subtotal after discounts is at least $100.
+Express Delivery: $12 delivery fee and the fee is never waived.
+
+Any discount that students get is only applied to the merchandise subtotal and does not include the delivery fees.
 
 ## 3. Running the tests
 
@@ -98,14 +108,12 @@ python -m unittest discover -s tests -v
 The supplied tests should finish with:
 
 ```text
-Ran 4 tests
+Ran 16 tests.
 
 OK
 ```
 
-These four tests are a starting point. **Passing them does not mean every required behavior is correct.** You will add meaningful tests as part of the assignment.
-
-The supplied tests use temporary files and do not change your saved orders or stock.
+The 16 tests include the 4 that came with the initial assignment, and 12 extra to help prove the existing functionality works to the way it is intended.
 
 ## 4. Saved data and practice sessions
 
@@ -149,10 +157,10 @@ Avoid running two instances that change the same save file simultaneously.
 - **`FUNCTIONAL_SPEC.md`** — Intended business behavior and application scope.
 - **`supplydesk/cli.py`** — Individual command handling and entry point for the menu.
 - **`supplydesk/menu.py`** — Interactive prompts and readable output.
-- **`supplydesk/service.py`** — Quotes, orders, inventory operations, and cancellation.
+- **`supplydesk/service.py`** — Quotes, orders, managing fulfillment pricing, inventory operations, and cancellation.
 - **`supplydesk/storage.py`** — Loading and saving local JSON data.
 - **`supplydesk/catalog.json`** — Initial products, prices, and stock for a new session.
-- **`tests/test_smoke.py`** — Four starter tests.
+- **`tests/test_smoke.py`** — 16 tests, including the 4 initial tests and 12 additional.
 
 The menu and individual commands use the same service and saved data. When a later requirement affects available choices or displayed information, review both interfaces.
 
@@ -172,6 +180,7 @@ You can perform operations directly instead of using the menu. These commands ar
 python -m supplydesk catalog
 python -m supplydesk quote --customer regular --item notebook:2
 python -m supplydesk quote --customer student --fulfillment delivery --item hoodie:2
+python -m supplydesk quote --customer student --fulfillment express --item hoodie:2
 ```
 
 Use repeated `--item` options for multiple items:
